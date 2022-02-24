@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/FirstPersonMovementTest/FirstPersonMovementTest.unity
     guid: 689190677e5a8ce48af2b4a418a16b15
+  - enabled: 1
+    path: Assets/Levels/Menu_Screen/Menu_Screen.unity
+    guid: 064424a7cc0615643b8428d44728dcf2
   m_configObjects: {}
