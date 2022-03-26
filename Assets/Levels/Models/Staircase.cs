@@ -15,6 +15,12 @@ namespace Assets.Level.Models
 
         public Staircase(Vector3Int previous, Vector3Int verticalOffset, Vector3Int horizontalOffset) : base()
         {
+            AddPieces(previous, verticalOffset, horizontalOffset);
+
+            var isUp = verticalOffset.y > 0;
+            var direction = horizontalOffset.x == 0 ? horizontalOffset.z > 0 ? Direction.North : Direction.South
+                                                    : horizontalOffset.x > 0 ? Direction.East : Direction.West;
+
             Previous = previous;
             VerticalOffset = verticalOffset;
             HorizontalOffset = horizontalOffset;
@@ -36,6 +42,8 @@ namespace Assets.Level.Models
             }
 
             AddPieces(previous, verticalOffset, horizontalOffset);
+            IsUp = isUp;
+            Direction = direction;
         }
 
         private void AddPieces(Vector3Int previous, Vector3Int verticalOffset, Vector3Int horizontalOffset)
@@ -49,6 +57,11 @@ namespace Assets.Level.Models
             AddPiece(second);
             AddPiece(third);
             AddPiece(fourth);
+        }
+
+        public Staircase(Vector3Int fromDirection, Vector3Int toDirection)
+        {
+
         }
     }
 }
