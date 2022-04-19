@@ -469,6 +469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1336994966329153327, guid: 803ced248e3549b4eab6a0ad05639f16,
         type: 3}
+      propertyPath: m_Name
+      value: First Person Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336994966329153327, guid: 803ced248e3549b4eab6a0ad05639f16,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
