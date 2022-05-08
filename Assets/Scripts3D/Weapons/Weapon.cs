@@ -14,16 +14,24 @@ public class Weapon : MonoBehaviour
 
     [Header("Sway Settings")]
     [SerializeField] private float _smooth;
-    [SerializeField] private float _multiplier;
-    private float _mouseX;
-    private float _mouseY;
+    [SerializeField] private float _swayMultiplier;
 
-    void OnStart()
+    private float _gunSwayDirectionX;
+    private float _gunSwayDirectionY;
+
+    private Quaternion _gunSwayRotationX;
+    private Quaternion _gunSwayRotationY;
+
+    private Quaternion _targetGunSwayRotation;
+
+    private fl
+
+    private void OnStart()
     {
         PlayerController = GetComponentInParent<PlayerController>();
     }
 
-    void Update()
+    private void Update()
     {
         if(Input.GetButtonDown("Fire1"))
         {
@@ -56,5 +64,17 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void GunSway()
+    {
+        _gunSwayDirectionX = PlayerController.mouseX * _swayMultiplier;
+        _gunSwayDirectionY = PlayerController.mouseY * _swayMultiplier;
+
+        _gunSwayRotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
+        _gunSwayRotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
+
+        _targetGunSwayRotation = _gunSwayRotationX * _gunSwayRotationY;
+
     }
 }
