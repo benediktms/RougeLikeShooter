@@ -69,8 +69,8 @@ public class Weapon : MonoBehaviour
         _gunSwayDirectionX = PlayerController.mouseX * _swayMultiplier;
         _gunSwayDirectionY = PlayerController.mouseY * _swayMultiplier;
 
-        _gunSwayRotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
-        _gunSwayRotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
+        _gunSwayRotationX = Quaternion.AngleAxis(-_gunSwayDirectionY, Vector3.right); // y direction is inverted by default
+        _gunSwayRotationY = Quaternion.AngleAxis(_gunSwayDirectionX, Vector3.up);
 
         _targetGunSwayRotation = _gunSwayRotationX * _gunSwayRotationY;
 
