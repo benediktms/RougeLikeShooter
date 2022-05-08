@@ -12,6 +12,12 @@ public class Weapon : MonoBehaviour
 
     PlayerController PlayerController;
 
+    [Header("Sway Settings")]
+    [SerializeField] private float _smooth;
+    [SerializeField] private float _multiplier;
+    private float _mouseX;
+    private float _mouseY;
+
     void OnStart()
     {
         PlayerController = GetComponentInParent<PlayerController>();
