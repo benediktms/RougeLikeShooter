@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     private float _velocityY = default;
 
+    public float mouseX;
+    public float mouseY;
+
     private Vector2 _currentMouseDelta = default;
     private Vector2 _currentMouseDeltaVelocity = default;
 
@@ -80,7 +83,10 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMovement()
     {
-        Vector2 targetDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        mouseX = Input.GetAxisRaw("Vertical");
+        mouseY = Input.GetAxisRaw("Horizontal");
+
+        Vector2 targetDirection = new Vector2(mouseY, mouseX);
         targetDirection.Normalize();
 
         _currentDirection = Vector2.SmoothDamp(_currentDirection, targetDirection, ref _currentDirectionVelocity, _moveSmoothTime);
