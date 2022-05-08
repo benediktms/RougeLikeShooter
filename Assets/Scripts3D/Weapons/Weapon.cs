@@ -24,8 +24,6 @@ public class Weapon : MonoBehaviour
 
     private Quaternion _targetGunSwayRotation;
 
-    private fl
-
     private void OnStart()
     {
         PlayerController = GetComponentInParent<PlayerController>();
@@ -76,5 +74,6 @@ public class Weapon : MonoBehaviour
 
         _targetGunSwayRotation = _gunSwayRotationX * _gunSwayRotationY;
 
+        transform.localRotation = Quaternion.Slerp(transform.localRotation,_targetGunSwayRotation, _smooth * Time.deltaTime);
     }
 }
