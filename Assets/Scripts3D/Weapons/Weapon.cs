@@ -13,16 +13,6 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField]
     protected float Damage;
-    [Header("Sway Settings")]
-    [SerializeField] private float _smooth;
-    [SerializeField] private float _multiplier;
-    private float _mouseX;
-    private float _mouseY;
-
-    void OnStart()
-    {
-        PlayerController = GetComponentInParent<PlayerController>();
-    }
 
     [SerializeField]
     protected float Range;
