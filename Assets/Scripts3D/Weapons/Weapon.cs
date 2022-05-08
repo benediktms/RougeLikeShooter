@@ -10,6 +10,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage = 20f;
     [SerializeField] ParticleSystem MuzzleFlash;
 
+    PlayerController PlayerController;
+
+    void OnStart()
+    {
+        PlayerController = GetComponentInParent<PlayerController>();
+    }
+
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
@@ -43,7 +50,5 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-
-
     }
 }
