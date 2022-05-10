@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void GunSway()
+    void TiltSway()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * _swayMultiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * _swayMultiplier;
