@@ -66,13 +66,14 @@ public abstract class Weapon : MonoBehaviour
         {
             HeadBob(idleCounter, 0.01f,0.01f);
             idleCounter += Time.deltaTime;
+            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * 2f); // control lerp from movement to idle bob, smooth
         }
         else
         {
             HeadBob(movementCounter,0.01f,0.01f);
             movementCounter += Time.deltaTime * 3f;
+            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * 8f); // control lerp from idle to movement bob, harsh
         }
-        EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * 8f); // control lerp between idle bob and movement bob
     }
 
     void HeadBob(float location_z, float x_intensity, float y_intensity)
