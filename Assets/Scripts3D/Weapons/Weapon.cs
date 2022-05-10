@@ -7,6 +7,9 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField]
     protected Transform AttackPoint;
+    [SerializeField] Camera FPCamera;
+    [SerializeField] ParticleSystem MuzzleFlash;
+    [SerializeField] Transform EquippedWeapon;
 
     [SerializeField]
     protected GameObject Round;
