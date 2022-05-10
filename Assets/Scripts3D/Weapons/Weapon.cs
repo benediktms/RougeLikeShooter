@@ -9,25 +9,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] float Range = 100f;
     [SerializeField] float damage = 20f;
     [SerializeField] ParticleSystem MuzzleFlash;
+    [SerializeField] Transform EquippedWeapon;
 
-    PlayerController PlayerController;
+    [SerializeField]  PlayerController PlayerController;
 
     [Header("Sway Settings")]
     [SerializeField] private float _smooth;
     [SerializeField] private float _swayMultiplier;
-
-    private float _gunSwayDirectionX;
-    private float _gunSwayDirectionY;
-
-    private Quaternion _gunSwayRotationX;
-    private Quaternion _gunSwayRotationY;
-
-    private Quaternion _targetGunSwayRotation;
-
-    private void OnStart()
-    {
-        PlayerController = GetComponentInParent<PlayerController>();
-    }
 
     private void Update()
     {
@@ -36,6 +24,8 @@ public class Weapon : MonoBehaviour
             PlayMuzzleFlash();
             Shoot();
         }
+
+        GunSway();
     }
 
     public void PlayMuzzleFlash()
@@ -48,7 +38,6 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, Range))
         {
-            // Debug.Log(hit.transform.name + " has been shot");
             Debug.DrawRay(transform.position, FPCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             EnemyHealth target = hit.transform.GetComponentInParent<EnemyHealth>();
             if(target == null)
@@ -64,16 +53,16 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void GunSway()
+    void GunSway()
     {
-        _gunSwayDirectionX = PlayerController.mouseX * _swayMultiplier;
-        _gunSwayDirectionY = PlayerController.mouseY * _swayMultiplier;
+        float mouseX = Input.GetAxisRaw("Mouse X") * _swayMultiplier;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * _swayMultiplier;
 
-        _gunSwayRotationX = Quaternion.AngleAxis(-_gunSwayDirectionY, Vector3.right); // y direction is inverted by default
-        _gunSwayRotationY = Quaternion.AngleAxis(_gunSwayDirectionX, Vector3.up);
+        Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
+        Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
 
-        _targetGunSwayRotation = _gunSwayRotationX * _gunSwayRotationY;
+        Quaternion targetRotation = rotationX * rotationY;
 
-        transform.localRotation = Quaternion.Slerp(transform.localRotation,_targetGunSwayRotation, _smooth * Time.deltaTime);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
     }
 }
