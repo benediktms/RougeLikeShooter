@@ -17,6 +17,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _smooth;
     [SerializeField] private float _swayMultiplier;
 
+    [Header("Bob Settings")]
+    private Vector3 _weaponOrigin;
+
+    private void private void Start()
+    {
+        _weaponOrigin = transform.localPosition;
+    }
+
     private void Update()
     {
         if(Input.GetButtonDown("Fire1"))
@@ -25,7 +33,7 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
 
-        GunSway();
+        RotationSway();
     }
 
     public void PlayMuzzleFlash()
@@ -53,7 +61,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void TiltSway()
+    void RotationSway()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * _swayMultiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * _swayMultiplier;
@@ -64,5 +72,9 @@ public class Weapon : MonoBehaviour
         Quaternion targetRotation = rotationX * rotationY;
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
+    }
+
+    void HeadBob()
+    {
     }
 }
