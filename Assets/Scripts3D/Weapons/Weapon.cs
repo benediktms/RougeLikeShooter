@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem MuzzleFlash;
     [SerializeField] Transform EquippedWeapon;
 
-    [SerializeField]  PlayerController PlayerController;
+    [SerializeField] PlayerController PlayerController;
 
     [Header("Sway Settings")]
     [SerializeField] private float _smooth;
@@ -20,9 +20,9 @@ public class Weapon : MonoBehaviour
     [Header("Bob Settings")]
     private Vector3 _weaponOrigin;
 
-    private void private void Start()
+    private void Start()
     {
-        _weaponOrigin = transform.localPosition;
+        _weaponOrigin = EquippedWeapon.localPosition;
     }
 
     private void Update()
@@ -74,7 +74,8 @@ public class Weapon : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
     }
 
-    void HeadBob()
-    {
-    }
+    // void HeadBob(float location_z, float x_intensity, float y_intensity)
+    // {
+    //     _weaponOrigin.localPosition = new Vector3 (Mathf.Cos(location_z) * x_intensity, Mathf.Sin(location_z) * y_intensity,EquippedWeapon.z); // sin starts from the origin and goes up and down on axis
+    // }
 }
