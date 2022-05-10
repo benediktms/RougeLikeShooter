@@ -26,7 +26,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Start()
     {
-        _weaponOrigin = transform.localPosition;
+        _weaponOrigin = EquippedWeapon.localPosition;
     }
 
     private void Update()
@@ -52,7 +52,8 @@ public abstract class Weapon : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
     }
 
-    void HeadBob()
-    {
-    }
+    // void HeadBob(float location_z, float x_intensity, float y_intensity)
+    // {
+    //     _weaponOrigin.localPosition = new Vector3 (Mathf.Cos(location_z) * x_intensity, Mathf.Sin(location_z) * y_intensity,EquippedWeapon.z); // sin starts from the origin and goes up and down on axis
+    // }
 }
