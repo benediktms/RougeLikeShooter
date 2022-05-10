@@ -13,6 +13,12 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField]
     protected float Damage;
+    private float movementCounter;
+    private float idleCounter;
+
+    [Header("Sway Settings")]
+    [SerializeField] private float _smooth;
+    [SerializeField] private float _swayMultiplier;
 
     [SerializeField]
     protected float Range;
@@ -23,6 +29,7 @@ public abstract class Weapon : MonoBehaviour
     protected abstract void Fire();
     [Header("Bob Settings")]
     private Vector3 _weaponOrigin;
+    private Vector3 _targetWeaponBobPosition;
 
     private void Start()
     {
@@ -32,6 +39,7 @@ public abstract class Weapon : MonoBehaviour
     private void Update()
     {
         RotationSway();
+        HeadBobController();
     }
 
     public void PlayMuzzleFlash()
@@ -52,8 +60,23 @@ public abstract class Weapon : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
     }
 
-    // void HeadBob(float location_z, float x_intensity, float y_intensity)
-    // {
-    //     _weaponOrigin.localPosition = new Vector3 (Mathf.Cos(location_z) * x_intensity, Mathf.Sin(location_z) * y_intensity,EquippedWeapon.z); // sin starts from the origin and goes up and down on axis
-    // }
+    void HeadBobController()
+    {
+        if(PlayerController.mouseX == 0 && PlayerController.mouseY == 0)
+        {
+            HeadBob(idleCounter, 0.01f,0.01f);
+            idleCounter += Time.deltaTime;
+        }
+        else
+        {
+            HeadBob(movementCounter,0.01f,0.01f);
+            movementCounter += Time.deltaTime * 3f;
+        }
+        EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * 8f); // control lerp between idle bob and movement bob
+    }
+
+    void HeadBob(float location_z, float x_intensity, float y_intensity)
+    {
+        _targetWeaponBobPosition = _weaponOrigin + new Vector3(Mathf.Cos(location_z) * x_intensity, Mathf.Sin(location_z * 2) * y_intensity,0); // sin starts from the origin and goes up and down on axis
+    }
 }
