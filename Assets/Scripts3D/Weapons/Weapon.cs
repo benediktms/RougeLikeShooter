@@ -16,13 +16,23 @@ public class Weapon : MonoBehaviour
     private float movementCounter;
     private float idleCounter;
 
-    [Header("Sway Settings")]
+    [Header("Mouse Look Sway Settings")]
     [SerializeField] private float _smooth;
     [SerializeField] private float _swayMultiplier;
 
-    [Header("Bob Settings")]
     private Vector3 _weaponOrigin;
     private Vector3 _targetWeaponBobPosition;
+
+    [Header("Idle Bob Settings")]
+    [SerializeField] private float _idleGunSway;
+    [SerializeField] private float _idleSwaySpeed;
+    [SerializeField] private float _moveToIdleTransition;
+
+    [Header("Movement Bob Settings")]
+    [SerializeField] private float _movingGunSway;
+    [SerializeField] private float _movingGunSwaySpeed;
+    [SerializeField] private float _idleToMoveTransition;
+
 
     private void Start()
     {
@@ -83,15 +93,15 @@ public class Weapon : MonoBehaviour
     {
         if(PlayerController.mouseX == 0 && PlayerController.mouseY == 0)
         {
-            HeadBob(idleCounter, 0.01f,0.01f);
-            idleCounter += Time.deltaTime;
-            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * 2f); // control lerp from movement to idle bob, smooth
+            HeadBob(idleCounter, _idleGunSway,_idleGunSway);
+            idleCounter += Time.deltaTime * _idleSwaySpeed;
+            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * _moveToIdleTransition); // control lerp from movement to idle bob, smooth
         }
         else
         {
-            HeadBob(movementCounter,0.01f,0.01f);
-            movementCounter += Time.deltaTime * 3f;
-            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * 8f); // control lerp from idle to movement bob, harsh
+            HeadBob(movementCounter, _movingGunSway, _movingGunSway);
+            movementCounter += Time.deltaTime * _movingGunSwaySpeed;
+            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * _idleToMoveTransition); // control lerp from idle to movement bob, harsh
         }
     }
 

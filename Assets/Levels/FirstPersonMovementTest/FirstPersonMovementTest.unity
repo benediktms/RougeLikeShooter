@@ -467,9 +467,21 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _idleGunSway
+      value: 0.0125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: EquippedWeapon
       value: 
       objectReference: {fileID: 668307538}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _idleSwaySpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _movingGunSway
+      value: 0.0125
+      objectReference: {fileID: 0}
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: _swayMultiplier
       value: 25
@@ -478,6 +490,18 @@ PrefabInstance:
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 843622558}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _movingGunSwaySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _idleToMoveTransition
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _moveToIdleTransition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1336994966322586319, guid: 803ced248e3549b4eab6a0ad05639f16,
         type: 3}
       propertyPath: m_Enabled
