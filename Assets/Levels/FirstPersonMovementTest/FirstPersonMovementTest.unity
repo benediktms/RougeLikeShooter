@@ -464,7 +464,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: _smooth
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: EquippedWeapon
@@ -472,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 668307538}
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: _swayMultiplier
-      value: 2
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: PlayerController
