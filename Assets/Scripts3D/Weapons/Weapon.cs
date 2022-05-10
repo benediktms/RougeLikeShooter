@@ -20,6 +20,9 @@ public class Weapon : MonoBehaviour
     private float _idleCounter;
     private float _movementCounter;
 
+    private Vector3 _weaponOrigin;
+    private Vector3 _targetWeaponBobPosition;
+    
     [Header("Mouse Look Sway Settings")]
     [SerializeField] private float _smooth;
     [SerializeField] private float _swayMultiplier;
