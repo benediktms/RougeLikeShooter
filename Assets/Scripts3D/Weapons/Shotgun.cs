@@ -20,7 +20,7 @@ public class Shotgun : Weapon
         }
     }
 
-    protected override void Fire()
+    void Fire()
     {
         var direction = GetFireDirection();
         var bullets = GetBullets(direction);
