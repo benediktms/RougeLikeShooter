@@ -36,10 +36,10 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y = -MovementSpeed;
         }
 
-        float xMovement = Input.GetAxis("Horizontal");
-        float zMovement = Input.GetAxis("Vertical");
+        xMovement = Input.GetAxis("Horizontal");
+        yMovement = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * xMovement + transform.forward * zMovement;
+        Vector3 move = transform.right * xMovement + transform.forward * yMovement;
 
         Controller.Move(move * Speed * Time.deltaTime);
 
