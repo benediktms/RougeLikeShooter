@@ -233,6 +233,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 548216296}
   m_RootOrder: 2
@@ -581,22 +582,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1846315223, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1846315224, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1846315224, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1846315224, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.85
-      objectReference: {fileID: 0}
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: _smooth
       value: 3
@@ -636,6 +621,26 @@ PrefabInstance:
     - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: _moveToIdleTransition
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: EquippedWeaponLocation
+      value: 
+      objectReference: {fileID: 668307538}
+    - target: {fileID: 1846315223, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846315224, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846315224, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846315224, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1336994966322586319, guid: 803ced248e3549b4eab6a0ad05639f16,
         type: 3}
@@ -1211,12 +1216,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c188cfdc1d624f143958bd6bfd4d260a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 1021661241}
   AttackPoint: {fileID: 2083360281}
+  Camera: {fileID: 1021661241}
+  MuzzleFlash: {fileID: 0}
+  EquippedWeaponLocation: {fileID: 668307538}
+  PlayerController: {fileID: 843622558}
   Round: {fileID: 253567870}
   Damage: 5
+  _smooth: 0
+  _swayMultiplier: 0
   Range: 75
   ShootForce: 300
+  _idlePlayerWeaponSway: 0
+  _idlePlayerWeaponSwaySpeed: 0
+  _playerMoveToIdleTransitionSpeed: 0
+  _movingPlayerGunSway: 0
+  _movingPlayerGunSwaySpeed: 0
+  _idlePlayerToMoveTransitionSpeed: 0
   PelletsPerShell: 10
   Spread: 2
 --- !u!1 &1356768935
