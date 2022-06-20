@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [SerializeField]
     protected Camera Camera;
@@ -9,18 +9,16 @@ public abstract class Weapon : MonoBehaviour
     protected Transform AttackPoint;
     [SerializeField] Camera FPCamera;
     [SerializeField] ParticleSystem MuzzleFlash;
-    [SerializeField] Transform EquippedWeapon;
+    [SerializeField] Transform EquippedWeaponLocation;
+    [SerializeField] PlayerController PlayerController;
 
     [SerializeField]
     protected GameObject Round;
 
     [SerializeField]
     protected float Damage;
-    private float movementCounter;
-    private float idleCounter;
-
-    private Vector3 _weaponOrigin;
-    private Vector3 _targetWeaponBobPosition;
+    private float _idleCounter;
+    private float _movementCounter;
 
     [Header("Mouse Look Sway Settings")]
     [SerializeField] private float _smooth;
@@ -32,30 +30,31 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected float ShootForce;
 
-    protected abstract void Fire();
+    protected void Fire();
+
     [Header("Bob Settings")]
     private Vector3 _weaponOrigin;
     private Vector3 _targetWeaponBobPosition;
 
     [Header("Idle Bob Settings")]
-    [SerializeField] private float _idleGunSway;
-    [SerializeField] private float _idleSwaySpeed;
-    [SerializeField] private float _moveToIdleTransition;
+    [SerializeField] private float _idlePlayerWeaponSway;
+    [SerializeField] private float _idlePlayerWeaponSwaySpeed;
+    [SerializeField] private float _playerMoveToIdleTransitionSpeed;
 
     [Header("Movement Bob Settings")]
-    [SerializeField] private float _movingGunSway;
-    [SerializeField] private float _movingGunSwaySpeed;
-    [SerializeField] private float _idleToMoveTransition;
+    [SerializeField] private float _movingPlayerGunSway;
+    [SerializeField] private float _movingPlayerGunSwaySpeed;
+    [SerializeField] private float _idlePlayerToMoveTransitionSpeed;
 
     private void Start()
     {
-        _weaponOrigin = EquippedWeapon.localPosition;
+        _weaponOrigin = EquippedWeaponLocation.localPosition;
     }
 
     private void Update()
     {
-        RotationSway();
-        HeadBobController();
+        ApplyRotationSway();
+        ApplyPlayerHeadBobMovement();
     }
 
     public void PlayMuzzleFlash()
@@ -63,10 +62,12 @@ public abstract class Weapon : MonoBehaviour
         MuzzleFlash.Play();
     }
 
-    void RotationSway()
+    void ApplyRotationSway()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * _swayMultiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * _swayMultiplier;
+
+        Debug.Log(mouseX);
 
         Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
         Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
@@ -76,24 +77,26 @@ public abstract class Weapon : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
     }
 
-    void HeadBobController()
+    void ApplyPlayerHeadBobMovement()
     {
-        if(PlayerController.mouseX == 0 && PlayerController.mouseY == 0)
+        var playerIsStationary = InputHelper.VerticalAxis == 0 && InputHelper.HorizontalAxis == 0;
+
+        if(playerIsStationary)
         {
-            HeadBob(idleCounter, _idleGunSway,_idleGunSway);
-            idleCounter += Time.deltaTime * _idleSwaySpeed;
-            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * _moveToIdleTransition); // control lerp from movement to idle bob, smooth
+            HeadBob(_idleCounter, _idlePlayerWeaponSway,_idlePlayerWeaponSway);
+            _idleCounter += Time.deltaTime * _idlePlayerWeaponSwaySpeed;
+            EquippedWeaponLocation.localPosition = Vector3.Lerp(EquippedWeaponLocation.localPosition, _targetWeaponBobPosition, Time.deltaTime * _playerMoveToIdleTransitionSpeed); // control lerp from movement to idle bob, smooth
         }
         else
         {
-            HeadBob(movementCounter, _movingGunSway, _movingGunSway);
-            movementCounter += Time.deltaTime * _movingGunSwaySpeed;
-            EquippedWeapon.localPosition = Vector3.Lerp(EquippedWeapon.localPosition, _targetWeaponBobPosition, Time.deltaTime * _idleToMoveTransition); // control lerp from idle to movement bob, harsh
+            HeadBob(_movementCounter, _movingPlayerGunSway, _movingPlayerGunSway);
+            _movementCounter += Time.deltaTime * _movingPlayerGunSwaySpeed;
+            EquippedWeaponLocation.localPosition = Vector3.Lerp(EquippedWeaponLocation.localPosition, _targetWeaponBobPosition, Time.deltaTime * _idlePlayerToMoveTransitionSpeed); // control lerp from idle to movement bob, harsh
         }
     }
 
-    void HeadBob(float location_z, float x_intensity, float y_intensity)
+    void HeadBob(float playerActionHeadBobType, float LeftToRightSwayLoopIntensity, float UpToDownSwayLoopIntensity)
     {
-        _targetWeaponBobPosition = _weaponOrigin + new Vector3(Mathf.Cos(location_z) * x_intensity, Mathf.Sin(location_z * 2) * y_intensity,0); // sin starts from the origin and goes up and down on axis
+        _targetWeaponBobPosition = _weaponOrigin + new Vector3(Mathf.Cos(playerActionHeadBobType) * LeftToRightSwayLoopIntensity, Mathf.Sin(playerActionHeadBobType * 2) * UpToDownSwayLoopIntensity,0); // sin starts from the origin and goes up and down on axis
     }
 }
