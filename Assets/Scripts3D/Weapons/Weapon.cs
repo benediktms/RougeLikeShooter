@@ -4,11 +4,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField]
-    protected Camera Camera;
-
-    [SerializeField]
     protected Transform AttackPoint;
-    [SerializeField] Camera FPCamera;
+    [SerializeField] public Camera Camera;
     [SerializeField] ParticleSystem MuzzleFlash;
     [SerializeField] Transform EquippedWeaponLocation;
     [SerializeField] PlayerController PlayerController;
@@ -69,14 +66,14 @@ public class Weapon : MonoBehaviour
         float mouseX = InputHelper.VerticalAxis * _swayMultiplier;
         float mouseY = InputHelper.HorizontalAxis * _swayMultiplier;
 
-        Debug.Log(mouseX);
-
         Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
         Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
 
         Quaternion targetRotation = rotationX * rotationY;
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
+
+        Debug.Log(rotationX);
     }
 
     void ApplyPlayerHeadBobMovement()
