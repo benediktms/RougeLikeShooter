@@ -1,3 +1,4 @@
+using Assets.Helpers;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -33,8 +34,6 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     protected float ShootForce;
 
-    protected void Fire();
-
     [Header("Bob Settings")]
     private Vector3 _weaponOrigin;
     private Vector3 _targetWeaponBobPosition;
@@ -67,8 +66,8 @@ public class Weapon : MonoBehaviour
 
     void ApplyRotationSway()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * _swayMultiplier;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * _swayMultiplier;
+        float mouseX = InputHelper.VerticalAxis * _swayMultiplier;
+        float mouseY = InputHelper.HorizontalAxis * _swayMultiplier;
 
         Debug.Log(mouseX);
 
