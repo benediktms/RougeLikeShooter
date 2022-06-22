@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
-    [SerializeField]
-    private int _pelletsPerShell = 10;
+    [SerializeField] private int PelletsPerShell = 10;
 
-    [SerializeField]
-    private float _spread = 2;
+    [SerializeField] private float Spread = 2;
+
+    private float _refractory;
+    private float _reloadTime;
         
     void Update()
     {
@@ -15,6 +16,9 @@ public class Shotgun : Weapon
         {
             Fire();
         }
+        
+        ApplyRotationSway();
+        ApplyPlayerHeadBobMovement();
     }
 
     void Fire()
@@ -68,4 +72,9 @@ public class Shotgun : Weapon
         }
 
     }
+
+    // public override void Test()
+    // {
+    //     Debug.Log("This is definitely working");
+    // } 
 }
