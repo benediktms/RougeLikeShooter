@@ -4,13 +4,10 @@ using UnityEngine;
 public class Shotgun : Weapon
 {
     [SerializeField]
-    private int PelletsPerShell = 10;
+    private int _pelletsPerShell = 10;
 
     [SerializeField]
-    private float Spread = 2;
-
-    private float _refractory;
-    private float _reloadTime;
+    private float _spread = 2;
         
     void Update()
     {
@@ -27,7 +24,7 @@ public class Shotgun : Weapon
         FireBullets(bullets);
     }
 
-    Vector3 GetFireDirection()
+    private Vector3 GetFireDirection()
     {
         var ray = Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
@@ -35,10 +32,10 @@ public class Shotgun : Weapon
         return targetPoint - AttackPoint.position;
     }
 
-    GameObject[] GetBullets(Vector3 centreDirection)
+    private GameObject[] GetBullets(Vector3 centreDirection)
     {
-        GameObject[] bullets = new GameObject[PelletsPerShell];
-        for (var i = 0; i < PelletsPerShell; ++i)
+        GameObject[] bullets = new GameObject[_pelletsPerShell];
+        for (var i = 0; i < _pelletsPerShell; ++i)
         {
             var bullet = Instantiate(Round, AttackPoint.position, Quaternion.identity);
             var bulletDirection = ApplySpread(centreDirection);
@@ -51,13 +48,13 @@ public class Shotgun : Weapon
 
     private Vector3 ApplySpread(Vector3 directionWithoutSpread)
     {
-        if (Spread == 0)
+        if (_spread == 0)
         {
             return directionWithoutSpread;
         }
 
-        float xSpread = Random.Range(-Spread, Spread);
-        float ySpread = Random.Range(-Spread, Spread);
+        float xSpread = Random.Range(-_spread, _spread);
+        float ySpread = Random.Range(-_spread, _spread);
         var shotSpread = new Vector3(xSpread, ySpread);
 
         return directionWithoutSpread + shotSpread;
