@@ -1219,12 +1219,12 @@ MonoBehaviour:
   AttackPoint: {fileID: 2083360281}
   Camera: {fileID: 1021661241}
   MuzzleFlash: {fileID: 0}
-  EquippedWeaponLocation: {fileID: 668307538}
+  EquippedWeaponParent: {fileID: 548216296}
   PlayerController: {fileID: 843622558}
   Round: {fileID: 253567870}
   Damage: 5
-  _smooth: 0
-  _swayMultiplier: 0
+  _smooth: 0.2
+  _swayMultiplier: 0.2
   Range: 75
   ShootForce: 300
   _idlePlayerWeaponSway: 0
@@ -1233,8 +1233,8 @@ MonoBehaviour:
   _movingPlayerGunSway: 0
   _movingPlayerGunSwaySpeed: 0
   _idlePlayerToMoveTransitionSpeed: 0
-  PelletsPerShell: 10
-  Spread: 2
+  _pelletsPerShell: 10
+  _spread: 2
 --- !u!1 &1356768935
 GameObject:
   m_ObjectHideFlags: 0

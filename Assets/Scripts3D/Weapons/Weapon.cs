@@ -22,8 +22,8 @@ public abstract class Weapon : MonoBehaviour
     private Vector3 _targetWeaponBobPosition;
 
     [Header("Mouse Look Sway Settings")]
-    [SerializeField] private float _smooth;
-    [SerializeField] private float _swayMultiplier;
+    [SerializeField] private float _smooth = 5;
+    [SerializeField] private float _swayMultiplier = 10;
 
     [SerializeField]
     protected float Range;
@@ -58,8 +58,11 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void ApplyRotationSway()
     {
-        float mouseX = InputHelper.MouseXAxis  * _swayMultiplier;
-        float mouseY = InputHelper.MouseYAxis * _swayMultiplier;
+        var inputX = InputHelper.MouseXAxis > 0.5 ? InputHelper.MouseXAxis : 0;
+        var inputY = InputHelper.MouseYAxis > 0.5 ? InputHelper.MouseYAxis : 0;
+        if(inputX == 0 && inputY == 0) { return; }
+        float mouseX = inputX * _swayMultiplier;
+        float mouseY = inputY * _swayMultiplier;
 
         Quaternion rotationX = Quaternion.AngleAxis(mouseY, Vector3.right);
         Quaternion rotationY = Quaternion.AngleAxis(-mouseX, Vector3.up);
@@ -67,6 +70,13 @@ public abstract class Weapon : MonoBehaviour
         Quaternion targetRotation = rotationX * rotationY;
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _smooth * Time.deltaTime);
+
+        Debug.Log("Input X - " + inputX);
+        Debug.Log("Input X - " + inputY);
+
+        Debug.Log("Target rotation" + targetRotation);
+        Debug.Log("Local rotation" + transform.localRotation);
+
     }
 
     public virtual void ApplyPlayerHeadBobMovement()
