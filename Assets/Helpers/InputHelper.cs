@@ -8,6 +8,8 @@ namespace Assets.Helpers
         public static float HorizontalAxis => Input.GetAxisRaw("Horizontal");
         public static float MouseXAxis => Input.GetAxis("Mouse X");
         public static float MouseYAxis => Input.GetAxis("Mouse Y");
+        public static float MouseXAxisRaw => Input.GetAxisRaw("Mouse X");
+        public static float MouseYAxisRaw => Input.GetAxisRaw("Mouse Y");
         public static Vector2 MouseXY => new Vector2(MouseXAxis, MouseYAxis);
         public static bool PrimaryFire => Input.GetButtonDown("Fire1");
     }

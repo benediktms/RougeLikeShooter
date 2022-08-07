@@ -3,16 +3,20 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField]
-    protected Camera Camera;
-
-    [SerializeField]
     protected Transform AttackPoint;
+
+    [SerializeField] 
+    public Camera Camera;
+
+    [SerializeField] 
+    ParticleSystem MuzzleFlash;
 
     [SerializeField]
     protected GameObject Round;
 
     [SerializeField]
     protected float Damage;
+    private float _movementCounter;
 
     [SerializeField]
     protected float Range;
@@ -20,5 +24,12 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected float ShootForce;
 
-    protected abstract void Fire();
+    private void Start()
+    {
+    }
+
+    private void Update()
+    {
+    }
 }
+

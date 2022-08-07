@@ -34,10 +34,10 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y = -MovementSpeed;
         }
 
-        float xMovement = Input.GetAxis("Horizontal");
-        float zMovement = Input.GetAxis("Vertical");
+        var strafeMovement = Input.GetAxis("Horizontal");
+        var forwardMovement = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * xMovement + transform.forward * zMovement;
+        Vector3 move = transform.right * strafeMovement + transform.forward * forwardMovement;
 
         Controller.Move(move * Speed * Time.deltaTime);
 

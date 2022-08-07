@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
-    [SerializeField]
+    [SerializeField] 
     private int _pelletsPerShell = 10;
 
-    [SerializeField]
+    [SerializeField] 
     private float _spread = 2;
         
     void Update()
@@ -17,7 +17,7 @@ public class Shotgun : Weapon
         }
     }
 
-    protected override void Fire()
+    private void Fire()
     {
         var direction = GetFireDirection();
         var bullets = GetBullets(direction);

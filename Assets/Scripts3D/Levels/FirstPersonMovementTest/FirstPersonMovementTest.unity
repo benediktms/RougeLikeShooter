@@ -565,6 +565,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 785637646}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &668307538 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9037033106803544668, guid: 803ced248e3549b4eab6a0ad05639f16,
+    type: 3}
+  m_PrefabInstance: {fileID: 785637646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &785637646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -572,6 +578,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _smooth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _idleGunSway
+      value: 0.0125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: EquippedWeapon
+      value: 
+      objectReference: {fileID: 668307538}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _idleSwaySpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _movingGunSway
+      value: 0.0125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _swayMultiplier
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: PlayerController
+      value: 
+      objectReference: {fileID: 843622558}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _movingGunSwaySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _idleToMoveTransition
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: _moveToIdleTransition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+      propertyPath: EquippedWeaponLocation
+      value: 
+      objectReference: {fileID: 668307538}
     - target: {fileID: 1846315223, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -712,7 +762,52 @@ PrefabInstance:
     - {fileID: 0}
     - {fileID: 1859198456, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
     - {fileID: 1336994966322586319, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+    - {fileID: 1064994853, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 803ced248e3549b4eab6a0ad05639f16, type: 3}
+--- !u!1 &785637647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4974600459884732427, guid: 803ced248e3549b4eab6a0ad05639f16,
+    type: 3}
+  m_PrefabInstance: {fileID: 785637646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &785637648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785637647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d124de3c7e8d9b845a650244017936a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _smooth: 8
+  _swayMultiplier: 2
+--- !u!114 &785637649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785637647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f003fe824595f54a84e3e2d5f6dbac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &785637650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785637647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3066d1744093149419d43112b892d593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &843622552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1336994966329153325, guid: 803ced248e3549b4eab6a0ad05639f16,
@@ -771,6 +866,8 @@ MonoBehaviour:
   _walkSpeed: 15
   _moveSmoothTime: 0.3
   _gravity: -13
+  mouseX: 0
+  mouseY: 0
 --- !u!1001 &909747809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1158,14 +1255,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c188cfdc1d624f143958bd6bfd4d260a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 1021661241}
   AttackPoint: {fileID: 2083360281}
+  Camera: {fileID: 1021661241}
+  MuzzleFlash: {fileID: 0}
+  EquippedWeaponParent: {fileID: 548216296}
+  PlayerController: {fileID: 843622558}
   Round: {fileID: 253567870}
   Damage: 5
   Range: 75
   ShootForce: 300
-  PelletsPerShell: 10
-  Spread: 2
+  _idlePlayerWeaponSway: 0
+  _idlePlayerWeaponSwaySpeed: 0
+  _playerMoveToIdleTransitionSpeed: 0
+  _movingPlayerGunSway: 0
+  _movingPlayerGunSwaySpeed: 0
+  _idlePlayerToMoveTransitionSpeed: 0
+  _pelletsPerShell: 10
+  _spread: 2
 --- !u!1 &1356768935
 GameObject:
   m_ObjectHideFlags: 0
