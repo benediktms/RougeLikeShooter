@@ -29,9 +29,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     private float _velocityY = default;
 
-    public float mouseX;
-    public float mouseY;
-
     private Vector2 _currentMouseDelta = default;
     private Vector2 _currentMouseDeltaVelocity = default;
 

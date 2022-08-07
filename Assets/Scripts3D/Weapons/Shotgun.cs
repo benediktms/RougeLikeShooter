@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
-    [SerializeField] private int _pelletsPerShell = 10;
+    [SerializeField] 
+    private int _pelletsPerShell = 10;
 
-    [SerializeField] private float _spread = 2;
-
-    private float _refractory;
-    private float _reloadTime;
+    [SerializeField] 
+    private float _spread = 2;
         
     void Update()
     {

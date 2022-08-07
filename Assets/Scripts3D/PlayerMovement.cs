@@ -12,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public float Speed = 12f;
     public float Gravity = -9.81f;
     public float JumpHeight = 3f;
-    public float xMovement;
-    public float yMovement;
 
     public Transform GroundCheck;
     public float GroundDistance = 4f;
@@ -36,10 +34,10 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y = -MovementSpeed;
         }
 
-        xMovement = Input.GetAxis("Horizontal");
-        yMovement = Input.GetAxis("Vertical");
+        var strafeMovement = Input.GetAxis("Horizontal");
+        var forwardMovement = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * xMovement + transform.forward * yMovement;
+        Vector3 move = transform.right * strafeMovement + transform.forward * forwardMovement;
 
         Controller.Move(move * Speed * Time.deltaTime);
 
