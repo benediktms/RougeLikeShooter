@@ -16,12 +16,9 @@ public class Shotgun : Weapon
         {
             Fire();
         }
-
-        ApplyRotationSway();
-        // ApplyPlayerHeadBobMovement();
     }
 
-    void Fire()
+    private void Fire()
     {
         var direction = GetFireDirection();
         var bullets = GetBullets(direction);
@@ -72,9 +69,4 @@ public class Shotgun : Weapon
         }
 
     }
-
-    // public override void Test()
-    // {
-    //     Debug.Log("This is definitely working");
-    // } 
 }
